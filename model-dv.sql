@@ -134,6 +134,17 @@ create table temas
 )
     comment 'Temas de la reunion y el acta' collate = latin1_spanish_ci;
 
+create table tipos_actas
+(
+    id     int auto_increment comment 'Tipos de actas, interno o externo'
+        primary key,
+    nombre varchar(100) not null comment 'Nombre del tipo de acta'
+)
+    comment 'Tipos de actas' collate = latin1_spanish_ci;
+
+INSERT INTO tipos_actas (id, nombre) VALUES (1, 'Acta de seguimiento interno');
+INSERT INTO tipos_actas (id, nombre) VALUES (2, 'Acta de seguimiento de proyecto');
+
 create table usuario
 (
     id                bigint auto_increment comment 'Id del Usuario'
@@ -153,7 +164,7 @@ create table usuario
     firma_archivo_id  int                                  null comment 'id del archivo de la firma de acuerdo a tabla archivos',
     estado            int      default 1                   not null comment 'Estado del usuario, estos son:
 1. Activo, 0 Eliminado',
-    fecha_creado      datetime default current_timestamp() not null comment 'Fecha en que se creo el registro',
+    fecha_creado      datetime default current_timestamp() not null comment 'Fecha en que se creo el registro'
 )
     comment 'Tabla que contiene los registros de usuarios.' charset = utf8;
 
