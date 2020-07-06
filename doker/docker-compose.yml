@@ -1,0 +1,14 @@
+version: '3'
+services:
+    bd:
+        image: mariadb:latest
+        build: .
+        container_name: db_slim
+        restart: always
+        ports:
+        - "3306:3306"
+        environment:
+        - MYSQL_DATABASE=DB_SLIM
+        - MYSQL_USER=user_slim
+        - MYSQL_PASSWORD=pass_slim
+        - MYSQL_ROOT_PASSWORD=root
