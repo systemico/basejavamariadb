@@ -16,16 +16,26 @@ create table actas
 
 create table compromisos
 (
-    id              int auto_increment comment 'Id del compromiso'
-        primary key,
-    descripcion     text                 not null comment 'Descripción del compromiso',
-    fecha           date                 not null comment 'Fecha limite para cumplir el compromiso',
-    participante_id int                  not null comment 'Id del participante responsable del compromiso',
-    fecha_hora      datetime             not null comment 'Fecha y hora de registro del compromiso, se coloca directo en la sentencia SQL Insert',
-    tema_id         int                  not null comment 'Id del tema relacionado',
-    activo          tinyint(1) default 1 null comment '1=registro activo; 0=registro eliminado'
+	id int auto_increment comment 'Id del compromiso'
+		primary key,
+	descripcion text not null comment 'Descripción del compromiso',
+	fecha date not null comment 'Fecha limite para cumplir el compromiso',
+	participante_id int not null comment 'Id del participante responsable del compromiso',
+	fecha_hora datetime not null comment 'Fecha y hora de registro del compromiso, se coloca directo en la sentencia SQL Insert',
+	tema_id int not null comment 'Id del tema relacionado',
+	activo tinyint(1) default 1 null comment '1=registro activo; 0=registro eliminado',
+	estado int default 1 null comment '1=pendiente, 2=realizado, 3=aprobado, 4=rechazado'
 )
-    comment 'Compromisos de los temas de las actas' collate = latin1_spanish_ci;
+comment 'Compromisos de los temas de las actas' collate=latin1_spanish_ci;
+
+create table compromisos_archivos
+(
+    compromiso_id int                  not null,
+    archivo_id    int                  not null,
+    observaciones text                 null,
+    activo        tinyint(1) default 1 null,
+    primary key (archivo_id, compromiso_id)
+);
 
 create table conclusiones
 (
